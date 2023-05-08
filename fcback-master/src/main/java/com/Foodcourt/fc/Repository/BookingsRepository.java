@@ -13,5 +13,5 @@ public interface BookingsRepository extends JpaRepository<Bookings,Integer> {
 
     public List<Bookings> findAllByUser(User user);
 
-    public List<Bookings> findAllByFlightId(int FlightId);
+    public List<Bookings> findAllByFlightId(int flightId);
 }

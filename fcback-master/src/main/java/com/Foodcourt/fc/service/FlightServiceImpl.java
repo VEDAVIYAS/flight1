@@ -153,4 +153,9 @@ public class FlightServiceImpl implements FlightService{
         }
         return result;
     }
+
+    @Override
+    public Flight getFlight(int id) {
+        return flightRepository.findById(id);
+    }
 }

@@ -14,6 +14,8 @@ public interface FlightRepository extends JpaRepository<Flight,Integer> {
 
     public List<Flight> findAllByDepartureTime(Date departure_time);
 
+    public List<Flight> findAll();
+
     public Flight findById(int id);
 
     @Query("SELECT DISTINCT a.flightName FROM Flight a")

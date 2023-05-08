@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .antMatchers("/everyFlight").permitAll()
                 .antMatchers("/addBooking").permitAll()
                 .antMatchers("/userBooking").permitAll()
-                .antMatchers("/flightBooking").permitAll()
+                .antMatchers("/flightBooking").hasAuthority("ADMIN")
                 .antMatchers("/filter-by-date").permitAll()
                 .antMatchers("/flightName").permitAll()
                 .antMatchers("/filter-by-name").permitAll()

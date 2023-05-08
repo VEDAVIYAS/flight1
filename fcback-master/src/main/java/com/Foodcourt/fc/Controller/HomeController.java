@@ -65,6 +65,10 @@ public class HomeController {
     @PostMapping("/signup")
     public void signup(@RequestBody UserDTO userDTO)
     {
+        User user = userRepository.findByEmail(userDTO.getEmail());
+        if(user!=null){
+            return;
+        }
         Roles roles1=new Roles("USER");
         roleRepository.save(roles1);
         List<Roles> roles=new ArrayList<>();
@@ -100,22 +104,22 @@ public class HomeController {
     }
 
 
-    @GetMapping("/addBooking")
+    @PostMapping("/addBooking")
     public String addBooking(@RequestBody BookingsDTO bookingsDTO)
     {
         return bookingsService.saveBooking(bookingsDTO);
 
     }
 
-    @GetMapping("/userBooking")
-    public ResponseEntity<List<Bookings>> userBooking()
+    @PostMapping("/userBooking")
+    public ResponseEntity<List<UserBookingDTO>> userBooking()
     {
-        List<Bookings> lst = bookingsService.getUserBooking();
+        List<UserBookingDTO> lst = bookingsService.getUserBooking();
         System.out.println(lst);
         return new ResponseEntity<>(lst,HttpStatus.OK);
     }
 
-    @GetMapping("/flightBooking")
+    @PostMapping("/flightBooking")
     public ResponseEntity<Object> flightBooking(@RequestParam("flightId") int flightId)
     {
         return new ResponseEntity<>(bookingsService.getFlightBooking(flightId),HttpStatus.OK);
@@ -142,11 +146,14 @@ public class HomeController {
         return new ResponseEntity<>(flightService.filterByName(flightName),HttpStatus.OK);
     }
 
-    @GetMapping("/filtering-BY-All")
+    @PostMapping("/filtering-BY-All")
     public ResponseEntity<List<Flight>> filtering(@RequestBody FilteringDTO filteringDTO)  throws ParseException
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        Date date = sdf.parse(filteringDTO.getDepartureTime());
+        Date date=null;
+        if(filteringDTO.getDepartureTime()!=null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+            date = sdf.parse(filteringDTO.getDepartureTime());
+        }
         return new ResponseEntity<>(flightService.filteringByAll(filteringDTO,date),HttpStatus.OK);
     }
 }

@@ -26,4 +26,6 @@ public interface FlightService {
     public List<Flight> filterByName(String flightName);
 
     public List<Flight> filteringByAll(FilteringDTO filteringDTO,Date date);
+
+    public Flight getFlight(int id);
 }

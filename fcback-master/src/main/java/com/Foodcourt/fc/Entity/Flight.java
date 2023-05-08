@@ -114,4 +114,12 @@ public class Flight {
     public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

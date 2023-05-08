@@ -27,7 +27,7 @@ public class MyRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        List<Roles> roles=new ArrayList<>();
 //        Roles roles1=new Roles("ADMIN");
-//        //roles1.setUser(new ArrayList<>());
+//        roles1.setUser(new ArrayList<>());
 //        roleRepository.save(roles1);
 //        roles.add(roles1);
 //        userRepository.save(new User("santhosha.20cse@kongu.edu",passwordEncoder.encode("foodie"),null,roles));
